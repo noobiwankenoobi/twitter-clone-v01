@@ -12,7 +12,7 @@ woofForm.addEventListener('submit', (event) => {
     // woof is an object with name a content being inserted
     const woof = { name, content };
 
-    // Send post request to API
+    // Send POST request to API
     fetch(API_URL + 'woofs', {
         method: 'POST',
         body: JSON.stringify(woof),

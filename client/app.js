@@ -9,7 +9,7 @@ form.addEventListener('submit', (event) => {
     const name = formData.get('name');
     const content = formData.get('content')
     // woof is an object with name a content being inserted
-    const woof = { name, content};
+    const woof = { name, content };
 
     // Console Logs
     console.log("dog name =", name)

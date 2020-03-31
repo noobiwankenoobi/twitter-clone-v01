@@ -1,7 +1,14 @@
 const express = require('express');
 const cors = require('cors');
+const monk = require('monk');
 
 const app = express();
+
+// creating db variable, using monk to talk to localhost db called woofer
+const db = monk('localhost/woofer');
+
+// creates a "Collection" called "woofs"
+const woofs = db.get('woofs');
 
 // Any server request passing through automatically passes through this middleware and gets correct headers
 app.use(cors())
@@ -22,6 +29,18 @@ app.get('/', (req, res) => {
     })
 });
 
+
+// POST to Db function
+// Takes in a woof, inserts into "woofs" collection, then takes the createdWoof and send it back as response in json
+function postWoofToDB(woof) {
+    woofs.insert(woof)
+         .then(createdWoof => {
+             res.json(createdWoof)
+         })
+    console.log("woof on backend is =", woof)
+    console.log("createdWoof is =", createdWoof)
+}
+
 // Checks to make sure woof content is valid
 function isProperWoof(woof) {
     // returns a boolean of true if the posted woof object contains a name and content and the name/content aren't empty strings 
@@ -29,19 +48,23 @@ function isProperWoof(woof) {
            woof.content && woof.content.toString().trim() !== '';
 }
 
-function postWoofToDB(woof) {
-    console.log("woof on backend is =", woof)
-}
+
 
 ///////////
 // POST // 
 ///////// Defining what happens on a POST request
 app.post('/woofs', (req, res) => {
     // putting post request into woof object 
-    const woof = req.body
+    
     if (isProperWoof(req.body)) {
+        const woof = {
+            name: req.body.name.toString(),
+            content: req.body.content.toString(),
+            created: new Date()
+        }
         // Put in the database
         postWoofToDB(woof);
+
     } else {
         res.status(422);
         res.json({

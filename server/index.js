@@ -15,17 +15,6 @@ const db = monk('localhost/woofer');
 const woofs = db.get('woofs');
 
 
-
-
-
-
-
-
-
-
-
-
-
 // Any server request passing through automatically passes through this middleware and gets correct headers
 app.use(cors())
 
@@ -86,13 +75,13 @@ app.post('/woofs', (req, res) => {
             content: req.body.content.toString(),
             created: new Date()
         } // Put in the database
-        woofs.insert(woof)
+
+        woofs
+         .insert(woof)
          .then(createdWoof => {
-             res.json(createdWoof)
-         })
-        console.log("woof on backend is =", woof)
-        console.log("createdWoof is =", createdWoof)
-        
+            res.status(500);
+            console.log('createdWoof is =', createdWoof)
+         }).catch()
     } else {
         res.status(422);
         res.json({

@@ -20,6 +20,10 @@ woofForm.addEventListener('submit', (event) => {
             'content-type': 'application/json'
         }
     })
+      .then(response => response.json())
+      .then((createdWoof) => {
+        console.log('createdWoof response from server is=', createdWoof)
+    })
     // Console Logs
     console.log("woof being sent by client is =", woof)
 })

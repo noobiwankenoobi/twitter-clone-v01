@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @woof.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @woof.content %>
+</p>
+
+<%= link_to 'Edit', edit_woof_path(@woof) %> |
+<%= link_to 'Back', woofs_path %>

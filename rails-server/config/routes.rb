@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # resources :woofs
+  resources :woofs, except: [:new, :edit]
+
+  # get 'woofs' => 'woofs#index'
+  # get 'woofs/:id' => 'woofs#show'
+  # post 'woofs' => 'woofs#create'
+  # patch 'woofs/:id' => 'woofs#update'
+  # delete 'woofs/:id' => 'woofs#destroy'
 end

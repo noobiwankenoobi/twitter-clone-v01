@@ -36,6 +36,8 @@ app.get('/', (req, res) => {
 });
 
 
+
+
 // POST to Db function
 // Takes in a woof, inserts into "woofs" collection, then takes the createdWoof and send it back as response in json
 // function postWoofToDB(woof) {
@@ -63,7 +65,6 @@ function isProperWoof(woof) {
 
 
 
-
 ///////////
 // POST //
 ///////// Defining what happens on a POST request
@@ -76,13 +77,13 @@ app.post('/woofs', (req, res) => {
             content: req.body.content.toString(),
             created: new Date()
         } // Put in the database
-
+        // Monk insert
+        console.log("woof in back end is", woof)
         woofs
          .insert(woof)
          .then(createdWoof => {
-            res.status(500);
-            console.log('createdWoof is =', createdWoof)
-         }).catch()
+            res.json(createdWoof)
+         })
     } else {
         res.status(422);
         res.json({

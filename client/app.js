@@ -21,7 +21,7 @@ woofForm.addEventListener('submit', (event) => {
         }
     })
       .then(response => response.json())
-      .then((createdWoof) => {
+      .then(createdWoof => {
         console.log('createdWoof response from server is=', createdWoof)
     })
     // Console Logs

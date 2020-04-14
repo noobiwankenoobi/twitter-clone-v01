@@ -1,6 +1,8 @@
 class WoofsController < ApplicationController
   before_action :set_woof, only: [:show, :edit, :update, :destroy]
 
+  skip_before_action :verify_authenticity_token
+
   # GET /woofs
   # GET /woofs.json
   def index

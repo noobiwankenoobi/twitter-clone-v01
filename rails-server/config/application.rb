@@ -17,15 +17,15 @@ module RailsServer
     # the framework and any gems in your application.
 
     # Cross-Origin Resource Sharing
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins ENV['CLIENT_URL'].chomp('/')
-        resource(
-          '*',
-          headers: :any,
-          methods: [:get, :patch, :put, :delete, :post, :options]
-        )
-      end
-    end
+    # config.middleware.insert_before 0, Rack::Cors do
+    #   allow do
+    #     origins ENV['CLIENT_URL'].chomp('/')
+    #     resource(
+    #       '*',
+    #       headers: :any,
+    #       methods: [:get, :patch, :put, :delete, :post, :options]
+    #     )
+    #   end
+    # end
   end
 end
